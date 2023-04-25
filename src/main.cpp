@@ -57,25 +57,11 @@ int main(int argc, char *argv[]) {
                         
                 }
             }
-            // // Create a new image with the calculated dimensions
-            // int num_pixels = rgb_values.size();
-            // int img_width = 72;
-            // int img_height = num_pixels / img_width;
-            // 
+   
 
-            // // Set the color of each pixel to the corresponding RGB value
-            // for (int i = 0; i < num_pixels; i++) {
-            //     // Calculate the row and column of the current pixel
-            //     int row = i / img_width;
-            //     int col = i % img_width;
-
-            //     // Set the color of the current pixel to the corresponding RGB value
-            //     img.at<Vec3b>(row, col) = rgb_values[i];
-            // }
-
-    // Display the image
-        imwrite("output.jpg", img);
-        cv::waitKey(0);
+        // Display the image
+            imwrite("output.jpg", img);
+            cv::waitKey(0);
                 
         }catch(...){
 
