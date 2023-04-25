@@ -30,7 +30,7 @@ unique_ptr<ofstream> Utils::WriteFile(const char* filename){
 
         // check file condition
         if(!file->is_open() && !file->good()){
-            cerr  << "Error Opening File" << endl;
+            cerr  << "Error Write File" << endl;
             return nullptr;
         }
         // return the file pointer
@@ -50,7 +50,7 @@ void Utils::EncodeRBG(unique_ptr<ifstream> & file, unique_ptr<ofstream> &  outpu
             file->seekg(0, ios::beg);
 
             // open binary file
-            unique_ptr<ofstream> binaryFile = Utils::WriteFile("binary.txt");
+            unique_ptr<ofstream> binaryFile = Utils::WriteFile("out/binary.txt");
 
             // Read the file into a buffer
             char* buffer = new char[size];

@@ -6,12 +6,27 @@
 #include <string>
 #include <memory>
 
-// class ImageSpecs{
-//     private:
-//         int 
 
-//     public:
+enum class Size {
+    SMALL,
+    MEDIUM,
+    LARGE
+};
 
+enum class Mode {
+    GRAYSCALE,
+    COLOUR
+};
+
+
+class ImageSpecs{
+
+    private:
+        Size size;
+        Mode mode;
+
+    public:
+        ImageSpecs(Size size, Mode mode);
         
-// };
+};
 #endif
