@@ -64,13 +64,13 @@ void Utils::EncodeRBG(unique_ptr<ifstream> & file, unique_ptr<ofstream> &  outpu
             // write 
             for (int i = 0; i < size; i+=3) {
                 if (i+2 < size) {
-                    *output << static_cast<int>(buffer[i]) << " " << static_cast<int>(buffer[i+1]) << " " << static_cast<int>(buffer[i+2]) << "\n";
+                    *output << static_cast<unsigned int>(static_cast<unsigned char>(buffer[i])) << " " << static_cast<unsigned int>(static_cast<unsigned char>(buffer[i + 1]))<< " " << static_cast<unsigned int>(static_cast<unsigned char>(buffer[i + 2])) << "\n";
                     *binaryFile << bitset<8>(static_cast<unsigned char>(buffer[i])) << " " << bitset<8>(static_cast<unsigned char>(buffer[i+1])) << " " << bitset<8>(static_cast<unsigned char>(buffer[i+2])) << "\n";
                 } else if (i+1 < size) {
-                    *output << static_cast<int>(buffer[i]) << " " << static_cast<int>(buffer[i+1]) << "\n";
+                    *output << static_cast<unsigned int>(static_cast<unsigned char>(buffer[i])) << " " << static_cast<unsigned int>(static_cast<unsigned char>(buffer[i + 1]))<< "\n";
                     *binaryFile << bitset<8>(static_cast<unsigned char>(buffer[i])) << " " << bitset<8>(static_cast<unsigned char>(buffer[i+1])) << "\n";
                 } else {
-                    *output << static_cast<int>(buffer[i]) << "\n";
+                    *output << static_cast<unsigned int>(static_cast<unsigned char>(buffer[i])) << "\n";
                     *binaryFile << bitset<8>(static_cast<unsigned char>(buffer[i])) <<"\n";
                 }
             }

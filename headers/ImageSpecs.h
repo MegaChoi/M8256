@@ -7,7 +7,7 @@
 #include <memory>
 
 
-enum class Size {
+enum class ImgSize {
     SMALL,
     MEDIUM,
     LARGE
@@ -22,11 +22,13 @@ enum class Mode {
 class ImageSpecs{
 
     private:
-        Size size;
+        ImgSize size;
         Mode mode;
-
+        void ChangeSize();
     public:
-        ImageSpecs(Size size, Mode mode);
+        int length;
+        int width;
+        ImageSpecs(ImgSize size, Mode mode);
         
 };
 #endif

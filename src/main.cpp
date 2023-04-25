@@ -5,6 +5,8 @@
 #include <chrono>
 #include <string>
 #include "../headers/Utils.h"
+#include "../headers/ImageSpecs.h"
+#include "../headers/Render.h"
 #include <opencv2/opencv.hpp> 
 #include <unistd.h>
 using namespace cv;
@@ -16,52 +18,20 @@ int main(int argc, char *argv[]) {
     if (argc == 3) {
         try{
             unique_ptr<ifstream> file = Utils::OpenFile(argv[1]);
-            unique_ptr<ofstream> binaryFile = Utils::WriteFile(argv[2]);
+            unique_ptr<ofstream> outputFile = Utils::WriteFile(argv[2]);
 
             // generate RBG code file 
-            Utils::EncodeRBG(file, binaryFile);
+            Utils::EncodeRBG(file, outputFile);
 
             file.reset();
-            binaryFile.reset();
+            outputFile.reset();
 
+            // init image size
+            ImageSpecs imgSpecs(ImgSize::MEDIUM, Mode::GRAYSCALE);
 
-
-
-    
-            ifstream wile(argv[2]);
-            vector<Vec3b> rgb_values;
-            rgb_values.reserve(30000); 
-            std::string line;
-
-            while (std::getline(wile, line)) {
-                // Extract the RGB values from the line
-                std::stringstream ss(line);
-                int r, g, b;
-                
-                // cout<< r << g << b <<endl;
-                // sleep(1);
-                ss >> r >> g >> b;
-
-                // Add the RGB values to the vector
-                rgb_values.push_back(Vec3b(b, g, r));
-            }
-            cout<<rgb_values.size()<<endl;
-            
-            cv::Mat img(360, 640, CV_8UC3);
-            img.setTo(cv::Scalar(255, 255, 255));
-            int index = 0;
-
-            for (int i = 0; i < 360; i += 2) {
-                for (int j = 0; j < 640; j += 2) {
-                        
-                        img.at<cv::Vec3b>(i, j) = img.at<cv::Vec3b>(i, j + 1) = img.at<cv::Vec3b>(i + 1, j) = img.at<cv::Vec3b>(i + 1, j + 1) = rgb_values[index];
-                        index++;
-                }
-            }
-   
-
-            // Display the image
-            imwrite("out/output.png", img);
+            unique_ptr<ifstream> rgbFile = Utils::OpenFile(argv[2]);
+            // Render 
+            Render render(rgbFile, imgSpecs);
                 
         }catch(...){
 
