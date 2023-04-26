@@ -2,16 +2,22 @@
 
 Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs){
     try{
+        
 
+        this->Specs = Specs;
+
+        if(Specs.mode == Mode::RGB){
         // load the rgb values into 3Bvector
         this->rbgValues.reserve(30000);
+            while(getline(*file,line)){
+                stringstream ss(line);
+                ss >> r >> g >> b;
+                this->rbgValues.push_back(Vec3b(b, g, r));
 
-        while(getline(*file,line)){
-            stringstream ss(line);
-            ss >> r >> g >> b;
-            this->rbgValues.push_back(Vec3b(b, g, r));
-
+            }
         }
+
+
         // get the total number of pixels
         int totalPixels = this->rbgValues.size();
         
@@ -41,10 +47,14 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs){
 
 
     }catch(...){
-        
+        cout<< "Error At pre-Redering"<<endl;
     }
 
+}
 
-    
-        
+void Render::RenderRGB(){
+    int codec = cv::VideoWriter::fourcc('H', '2', '6', '4');
+    int FPS = 25;
+    cv::Size frameSize(this->Specs.width, this->Specs.length );
+    cv::VideoWriter video_writer("output.avi", codec, FPS, frameSize, true); // create VideoWriter object
 }

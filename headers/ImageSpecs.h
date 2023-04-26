@@ -15,17 +15,18 @@ enum class ImgSize {
 
 enum class Mode {
     GRAYSCALE,
-    COLOUR
+    RGB
 };
 
 
 class ImageSpecs{
 
     private:
-        ImgSize size;
-        Mode mode;
+        
         void ChangeSize();
     public:
+        ImgSize size;
+        Mode mode;
         int length;
         int width;
         ImageSpecs(ImgSize size, Mode mode);

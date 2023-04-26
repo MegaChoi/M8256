@@ -1,2 +1,3 @@
 Compiling commands
-g++ -o program main.cpp Utils.cpp Render.cpp ImageSpecs.cpp`pkg-config opencv4 --cflags --libs`
+g++ -o program main.cpp Utils.cpp Render.cpp ImageSpecs.cpp `pkg-config opencv4 --cflags --libs`
+./program sample10MB.wav out/output

@@ -19,6 +19,15 @@ class Render{
         vector<Vec3b> rbgValues;
         string line;
         int r, g, b;
+        ImageSpecs Specs; 
+
+        // video setting 
+
+
+        void RenderGrayscale();
+        void RenderRGB();
+        void EncodeVideo();
+        
     public:
         Render(unique_ptr<ifstream> & file, ImageSpecs & Specs);
 
