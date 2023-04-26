@@ -29,6 +29,8 @@ class ImageSpecs{
         Mode mode;
         int length;
         int width;
+
+        ImageSpecs() : width(1280), length(720), mode(Mode::GRAYSCALE){}
         ImageSpecs(ImgSize size, Mode mode);
         
 };

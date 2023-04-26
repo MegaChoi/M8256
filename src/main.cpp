@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
             outputFile.reset();
 
             // init image size
-            ImageSpecs imgSpecs(ImgSize::MEDIUM, Mode::GRAYSCALE);
+            ImageSpecs imgSpecs(ImgSize::MEDIUM, Mode::RGB);
 
             unique_ptr<ifstream> rgbFile = Utils::OpenFile(argv[2]);
             // Render 
