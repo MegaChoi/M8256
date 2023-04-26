@@ -25,6 +25,9 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
             }
             RenderGrayscale();
         }
+        // else(Specs.mode == Mode::GRAYSCALE){
+            
+        // }
 
         
 
