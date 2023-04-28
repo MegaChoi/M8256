@@ -17,6 +17,7 @@ using namespace std;
 class Render{
     private:
         vector<Vec3b> rbgValues;
+        vector<string> bitValues;
         string line;
         int r, g, b;
         ImageSpecs Specs; 

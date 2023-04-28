@@ -18,6 +18,7 @@ class Utils{
         static unique_ptr<ofstream> WriteFile(const char* filename);
 
         static void EncodeRBG(unique_ptr<ifstream> & file, unique_ptr<ofstream> & output);
+        static void EncodeGrayscale(unique_ptr<ifstream> & file, unique_ptr<ofstream> & output);
 };
 
 #endif
