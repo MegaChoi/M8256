@@ -27,14 +27,12 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
         }
         // else(Specs.mode == Mode::GRAYSCALE){
             
-        // }
-
-        
-
-
-
-
-    }catch(...){
+            while(getline(*file,line)){
+                this->bitValues.push_back(line);
+            }
+            RenderGrayscale();
+    }
+    catch(...){
         cout<< "Error At pre-Redering"<<endl;
     }
 
