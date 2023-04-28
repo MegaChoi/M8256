@@ -1,2 +1,4 @@
 # output of binary
 out/output.txt
+out/EncodedGrayscale.avi
+out/EncodedRGB.avi
