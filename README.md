@@ -5,7 +5,7 @@
   what it would look like to convert any file into a video, pixel by pixel? </strong><em><br>
   <br>
   <h3> <a href="https://www.youtube.com/watch?v=GmMuY9nMn-c">Love Story - Taylor Swift but in binary ?</a></h3> <br>
-  ![github_AdobeExpress](https://user-images.githubusercontent.com/102965306/235337037-e80a6706-cb54-46ac-b7e6-63867628337f.gif)
+  https://user-images.githubusercontent.com/102965306/235337037-e80a6706-cb54-46ac-b7e6-63867628337f.gif
   <br>
   <em><strong> Look no further, this program does just that. With this <br>
   file-to-video converter, you can "see" your files in pretty much its raw form. <br>
