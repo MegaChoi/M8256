@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 #include <memory>
+#include <sstream>
+
 using namespace std;
 
 class Utils{
@@ -13,10 +15,11 @@ class Utils{
 
     public:
 
-        static unique_ptr<ifstream> OpenFile(const char* filename);
+        static unique_ptr<ifstream> OpenFile(const string&  filename);
 
-        static unique_ptr<ofstream> WriteFile(const char* filename);
+        static unique_ptr<ofstream> WriteFile(const string&  filename);
 
+        static bool ReadInput(string& a, string& b, string& c);
         static void EncodeRBG(unique_ptr<ifstream> & file, unique_ptr<ofstream> & output);
         static void EncodeGrayscale(unique_ptr<ifstream> & file, unique_ptr<ofstream> & output);
 };

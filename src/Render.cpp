@@ -1,4 +1,5 @@
 #include "../headers/Render.h"
+#include "../headers/progressbar.h"
 
 Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
 { 
@@ -7,6 +8,7 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
 
         this->Specs = Specs;
 
+        
         if(Specs.mode == Mode::RGB){
             // load the rgb values into 3Bvector
             this->rbgValues.reserve(30000);
@@ -18,6 +20,7 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
             }
             RenderRGB();
         }else if(Specs.mode == Mode::GRAYSCALE){
+            // load the bits into string vector
             this->bitValues.reserve(30000);
             
             while(getline(*file,line)){
@@ -25,12 +28,7 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
             }
             RenderGrayscale();
         }
-        // else(Specs.mode == Mode::GRAYSCALE){
-            
-            while(getline(*file,line)){
-                this->bitValues.push_back(line);
-            }
-            RenderGrayscale();
+
     }
     catch(...){
         cout<< "Error At pre-Redering"<<endl;
@@ -39,7 +37,8 @@ Render::Render(unique_ptr<ifstream> & file, ImageSpecs & Specs)
 }
 
 void Render::RenderRGB(){
-    try{
+    try{   
+        
         int codec = cv::VideoWriter::fourcc('M', 'J', 'P', 'G');
         int FPS = 25;
         cv::Size frameSize(this->Specs.width, this->Specs.length );
@@ -61,8 +60,17 @@ void Render::RenderRGB(){
         int z = 0;
         int index = 0;
 
+        cout << endl; 
+        cout << "FPS            : " << 25 << endl; 
+        cout << "Total Pixels   : " << totalPixels << endl; 
+        cout << "Pixel per Image: " << pixelPerImage << endl; 
+        cout << "Total Frames   : " << totalImages << endl; 
+        cout << endl; 
+
+        progressbar bar(totalImages);
+     
         bool exitLoop = false;
-        while(z <= totalImages){
+        for(int i = 0; i < totalImages; i ++){
             
             cv::Mat img(Specs.length, Specs.width, CV_8UC3);
             img.setTo(cv::Scalar(255, 255, 255));
@@ -72,15 +80,16 @@ void Render::RenderRGB(){
                 for (int j = 0; j < Specs.width && !exitLoop; j += 2) {
                         img.at<cv::Vec3b>(i, j) = img.at<cv::Vec3b>(i, j + 1) = img.at<cv::Vec3b>(i + 1, j) = img.at<cv::Vec3b>(i + 1, j + 1) = this->rbgValues[index];
                         index++;
-
+                        
                         if(index >= totalPixels){
                             exitLoop = true;
                             break;
                         }
                 }
             }
+            bar.update();
             videoWriter.write(img);
-            z++;
+            // z++;
         }
         videoWriter.release();
 }    catch (const std::exception& e) {
@@ -115,7 +124,16 @@ void Render::RenderGrayscale(){
         int rowIndex = 0;
         int colIndex = 0;
 
-        cout<< totalPixels <<" " << pixelPerImage << " " << totalImages << endl;
+
+        cout << endl; 
+        cout << "FPS            : " << 25 << endl; 
+        cout << "Total Pixels   :" << totalPixels << endl; 
+        cout << "Pixel per Image:" << pixelPerImage << endl; 
+        cout << "Total Frames   :" << totalImages << endl; 
+        cout << endl; 
+
+        progressbar bar(totalImages);
+
         string bitString = this->bitValues[rowIndex];
         bool exitLoop = false;
         while(z <= totalImages){
@@ -152,6 +170,7 @@ void Render::RenderGrayscale(){
                     }
                 }
             }
+            bar.update();
             videoWriter.write(img);
             z++;
         }

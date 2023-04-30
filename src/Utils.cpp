@@ -1,8 +1,20 @@
 #include "../headers/Utils.h"
 
 Utils::Utils(){}
+bool Utils::ReadInput(string& arg1, string& arg2, string& arg3){
+ 
+    string input;
+    getline(cin, input);
+    stringstream ss(input);
 
-unique_ptr<ifstream> Utils::OpenFile(const char* filename){
+    if (ss >> arg1 >> arg2 >> arg3 && ss.eof()) 
+        return true;
+    else
+        return false;
+    
+
+}
+unique_ptr<ifstream> Utils::OpenFile(const string& filename){
     
     try{
         // open file
@@ -23,7 +35,7 @@ unique_ptr<ifstream> Utils::OpenFile(const char* filename){
     return nullptr;
 }
 
-unique_ptr<ofstream> Utils::WriteFile(const char* filename){
+unique_ptr<ofstream> Utils::WriteFile(const string&  filename){
     try{
         // open file
         unique_ptr<ofstream> file = make_unique<ofstream>(filename);
