@@ -59,7 +59,7 @@ harder to read the data from the video compare to only black and white <br>
 pixels in GRAYSCALE video.<br></strong> </em>
 
 
-<h1> Final Words </h1>
+<h1> Final words </h1>
 
 <em><strong><h>This project was inspired by DvorakDwarf and his https://github.com/DvorakDwarf/Infinite-Storage-Glitch which was written in Rust</h></strong></em>
 
